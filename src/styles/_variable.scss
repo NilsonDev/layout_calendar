@@ -1,0 +1,24 @@
+// --------------------
+// DIMENSÕES PRINCIPAIS
+// --------------------
+$day-size: 100px;        // tamanho do quadrado do dia
+$gap: 1px;               // espaço entre os dias
+$border: 1px;            // borda do dia
+$padding: 10px;           // padding do calendário
+
+$columns: 7;              // colunas do calendário
+$calendar-width: ($columns * $day-size) + (($columns - 1) * $gap) + (2 * $padding); // largura total
+
+// --------------------
+// CORES
+// --------------------
+$color-day-bg: #eee;      // fundo do dia
+$color-border: #000;      // cor da borda
+$color-hover: #FFBFCB;    // cor do hover
+$color-text: #333;        // cor do número
+
+// --------------------
+// TIPOGRAFIA
+// --------------------
+$font-size: 30px;         // tamanho do número
+$font-family: Arial, sans-serif;  // fonte

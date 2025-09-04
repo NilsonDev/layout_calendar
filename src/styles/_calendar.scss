@@ -1,0 +1,74 @@
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+  width: $calendar-width;
+  padding: $padding;
+  background: #fff;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__day {
+    width: $day-size;
+    height: $day-size;
+    border: $border solid $color-border;
+    background: $color-day-bg;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: $font-size;
+    font-weight: bold;
+    color: $color-text;
+
+    cursor: pointer;
+    transition: background 0.5s, transform 0.5s;
+
+    position: relative;
+    user-select: none;
+
+    &:hover {
+      background: $color-hover;
+      transform: translateY(-20px);
+    }
+  }
+
+  // Numerar dias de 1 até 31
+  @for $i from 1 through 31 {
+    &__day:nth-child(#{$i})::before {
+      content: "#{$i}";
+    }
+  }
+
+  // Modificadores de início do mês (domingo = padrão)
+  $days-map: (
+    sun: 0,
+    mon: 1,
+    tue: 2,
+    wed: 3,
+    thu: 4,
+    fri: 5,
+    sat: 6
+  );
+
+  @each $day, $index in $days-map {
+    &--start-day_#{$day} {
+      & > .calendar__day:first-child {
+        margin-left: $index * ($day-size + $gap);
+      }
+    }
+  }
+
+  // Modificadores de comprimento do mês
+  @for $len from 28 through 30 {
+    &--month-length_#{$len} {
+      & > .calendar__day:nth-child(n + #{$len + 1}) {
+        display: none;
+      }
+    }
+  }
+}
